@@ -5,20 +5,27 @@ import { getThemePreference, saveThemePreference } from '../utils/storage';
 
 type ThemeMode = 'light' | 'dark' | 'system';
 
-interface ThemeContextType {
-  theme: ThemeType;
+type ThemeContextType = {
+  theme: typeof LightTheme;
   mode: ThemeMode;
+  isDark: boolean;
   setThemeMode: (mode: ThemeMode) => void;
-}
+};
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
-export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
   const systemTheme = Appearance.getColorScheme();
   const [mode, setMode] = useState<ThemeMode>('system');
   const [theme, setTheme] = useState<ThemeType>(
-    systemTheme === 'dark' ? DarkTheme : LightTheme
+    systemTheme === 'dark' ? DarkTheme : LightTheme,
   );
+
+  const isDark =
+    mode === 'dark' ||
+    (mode === 'system' && Appearance.getColorScheme() === 'dark');
 
   // Load stored preference
   useEffect(() => {
@@ -52,7 +59,14 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   }, [mode]);
 
   return (
-    <ThemeContext.Provider value={{ theme, mode, setThemeMode: setMode }}>
+    <ThemeContext.Provider
+      value={{
+        theme,
+        mode,
+        isDark,
+        setThemeMode: setMode,
+      }}
+    >
       {children}
     </ThemeContext.Provider>
   );

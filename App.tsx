@@ -4,12 +4,14 @@ import { ThemeProvider, useTheme } from './src/context/ThemeContext';
 import HomeScreen from './src/screens/HomeScreen';
 
 const AppWrapper = () => {
-  const { theme } = useTheme();
+  const { isDark } = useTheme();
 
   return (
     <>
       <StatusBar
-        barStyle={theme.background === '#000000' ? 'light-content' : 'dark-content'}
+        barStyle={isDark ? 'light-content' : 'dark-content'}
+        backgroundColor="transparent"
+        translucent
       />
       <HomeScreen />
     </>
