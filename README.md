@@ -27,17 +27,17 @@ A React Native application demonstrating light, dark, and system theme switching
 
 ## 📁 Project Structure
 ---
-src/
-├── components/
-│ └── ThemeToggle.tsx
-├── context/
-│ └── ThemeContext.tsx
-├── screens/
-│ └── HomeScreen.tsx
-├── theme/
-│ └── colors.ts
-└── utils/
-└── storage.ts
+- src/
+- ├── components/
+- │ └── ThemeToggle.tsx
+- ├── context/
+- │ └── ThemeContext.tsx
+- ├── screens/
+- │ └── HomeScreen.tsx
+- ├── theme/
+- │ └── colors.ts
+- └── utils/
+- └── storage.ts
 
 
 ---
